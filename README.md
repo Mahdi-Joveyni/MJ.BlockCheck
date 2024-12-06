@@ -1,15 +1,24 @@
 # MJ.BlockCheck
  
 A router has an in-memory collection B of M external domains which cannot be visited by local network user. There is a rule that if a domain is blocked, any its subdomains are blocked too. For example, if domain adult.hb is blocked, the following hosts are blocked too: images.adult.hb, ringo.adult.hb, video.ringo.adult.hb Write a function (in C#): 
+
 `class Solution { public static int[] solution(string[] A, string[] B); }` 
+
 that, given a non-empty array A of N hosts, and B of M blocked domains, returns a sequence consisting of L integers where each integer represents an index of a host in input A array that can be visited by user. For example, given: 
+
 | A[0] = unlock.microvirus.md | B[0] = microvirus.md					 |
+
 | A[1] = visitwar.com   		       |   B[1] = visitwar.de						 |
+
 | A[2] = visitwar.de 		           |    B[2] = piratebay.co.uk				 |
+
 | A[3] = fruonline.co.uk		       |    B[3] = list.stolen.credit.card.us |
-| A[4] = australia.open.com     |															
+
+| A[4] = australia.open.com     |													
+
 | A[5] = credit.card.us	           |
  the function should return the array [1, 3, 4, 5], as explained above. 
+
  **Assume that:** 
 
  - N and M are integers within the range [1..20,000];
