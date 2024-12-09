@@ -1,6 +1,6 @@
 ﻿namespace MJ.BlockCheck.Tests;
 
-public class SolutionTests
+public class SolutionTwoTests
 {
    [Fact]
    public void Test_Main_Functionality()
@@ -10,10 +10,20 @@ public class SolutionTests
 
       int[] expected = [1, 3, 4, 5];
 
-      int[] result = Solution.solution(A, B);
+      var Stopwatch = new System.Diagnostics.Stopwatch();
+      Stopwatch.Start();
+      int[] result = SolutionOne.Solution(A, B);
+      var t1 = Stopwatch.Elapsed.TotalMicroseconds;
+      Stopwatch.Restart();
+      int[] result2 = SolutionTwo.Solution(A, B);
+      var t2 = Stopwatch.Elapsed.TotalMicroseconds;
 
       Assert.Equal(expected, result);
+      Assert.Equal(expected, result2);
+      Console.WriteLine($"Old: {t1} us, New: {t2} us");
    }
+
+
 
    [Fact]
    public void Test_Empty_Input()
@@ -21,8 +31,10 @@ public class SolutionTests
       string[] A = [];
       string[] B = [];
       int[] expected = [];
-      int[] result = Solution.solution(A, B);
+      int[] result = SolutionOne.Solution(A, B);
+      int[] result2 = SolutionTwo.Solution(A, B);
       Assert.Equal(expected, result);
+      Assert.Equal(expected, result2);
    }
 
    [Fact]
@@ -31,7 +43,9 @@ public class SolutionTests
       string[] A = ["unlock.microvirus.md", "visitwar.com", "visitwar.de", "fruonline.co.uk", "australia.open.com", "credit.card.us"];
       string[] B = [];
       int[] expected = [0, 1, 2, 3, 4, 5];
-      int[] result = Solution.solution(A, B);
+      int[] result = SolutionOne.Solution(A, B);
+      int[] result2 = SolutionTwo.Solution(A, B);
       Assert.Equal(expected, result);
+      Assert.Equal(expected, result2);
    }
 }

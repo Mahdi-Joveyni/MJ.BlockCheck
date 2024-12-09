@@ -1,3 +1,37 @@
+# Benchmarks
+// * Summary *
+
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.22631.4460/23H2/2023Update/SunValley3)
+Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
+.NET SDK 9.0.100
+  [Host]     : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+  DefaultJob : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+
+
+| Method                      | Mean     | Error   | StdDev   |
+|---------------------------- |---------:|--------:|---------:|
+| Benchmark_OldSolution       | 370.8 us | 8.31 us | 24.10 us |
+| Benchmark_OptimizedSolution | 305.8 us | 6.11 us | 17.73 us |
+
+// * Hints *
+Outliers
+  SolutionBenchmark.Benchmark_OldSolution: Default       -> 3 outliers were removed (439.20 us..446.30 us)
+  SolutionBenchmark.Benchmark_OptimizedSolution: Default -> 1 outlier  was  removed (376.58 us)
+
+// * Legends *
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  1 us   : 1 Microsecond (0.000001 sec)
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:02:32 (152.61 sec), executed benchmarks: 2
+
+Global total time: 00:02:43 (163.49 sec), executed benchmarks: 2
+
+To Run the benchmarks, run the following command in the terminal
+```dotnet run -c Release --project test/MJ.BlockCheck.Benchmark
+
 # MJ.BlockCheck
  
 A router has an in-memory collection B of M external domains which cannot be visited by local network user. There is a rule that if a domain is blocked, any its subdomains are blocked too. For example, if domain adult.hb is blocked, the following hosts are blocked too: images.adult.hb, ringo.adult.hb, video.ringo.adult.hb Write a function (in C#): 
