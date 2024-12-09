@@ -1,8 +1,8 @@
 ﻿namespace MJ.BlockCheck;
 
-public class Solution
+public class SolutionOne
 {
-   public static int[] solution(string[] A, string[] B)
+   public static int[] Solution(string[] A, string[] B)
    {
       HashSet<string> blockedDomains = [];
       foreach (string domain in B)
