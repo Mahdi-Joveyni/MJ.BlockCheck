@@ -30,7 +30,7 @@ Run time: 00:02:32 (152.61 sec), executed benchmarks: 2
 Global total time: 00:02:43 (163.49 sec), executed benchmarks: 2
 
 To Run the benchmarks, run the following command in the terminal
-```dotnet run -c Release --project test/MJ.BlockCheck.Benchmark
+	dotnet run -c Release --project test/MJ.BlockCheck.Benchmark
 
 # MJ.BlockCheck
  
