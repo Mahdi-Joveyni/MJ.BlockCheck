@@ -6,15 +6,45 @@ namespace MJ.BlockCheck.Benchmark;
 
 public class SolutionBenchmark
 {
-   string[] A = ["unlock.microvirus.md", "visitwar.com", "visitwar.de", "fruonline.co.uk", "australia.open.com", "credit.card.us"];
-   string[] B = ["microvirus.md", "visitwar.de", "piratebay.co.uk", "list.stolen.credit.card.us"];
+   string[] A;
+   string[] B;
 
-
-   [Benchmark]
-   public int[] Benchmark_OptimizedSolution()
+   [GlobalSetup]
+   public void Setup()
    {
-      return SolutionTwo.Solution(A, B);
+      B = GenerateBlockedDomains(200);
+      A = GenerateHosts(2000, B);
    }
+   private string[] GenerateBlockedDomains(int count)
+   {
+      var blockedDomains = new List<string>();
+      for (int i = 0; i < count; i++)
+      {
+         blockedDomains.Add($"blocked{i}.example.com");
+      }
+      return blockedDomains.ToArray();
+   }
+
+   private string[] GenerateHosts(int count, string[] blockedDomains)
+   {
+      var hosts = new List<string>();
+      var random = new Random();
+      for (int i = 0; i < count; i++)
+      {
+         if (i % 10 == 0)
+         {
+            // Add some blocked hosts
+            hosts.Add($"sub{i}.{blockedDomains[random.Next(blockedDomains.Length)]}");
+         }
+         else
+         {
+            // Add some non-blocked hosts
+            hosts.Add($"host{i}.example.net");
+         }
+      }
+      return [.. hosts];
+   }
+
 
    [Benchmark]
    public int[] Benchmark_OldSolution()
@@ -22,5 +52,10 @@ public class SolutionBenchmark
       return SolutionOne.Solution(A, B);
    }
 
+   [Benchmark]
+   public int[] Benchmark_OptimizedSolution()
+   {
+      return SolutionTwo.Solution(A, B);
+   }
 
 }

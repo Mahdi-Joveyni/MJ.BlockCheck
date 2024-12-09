@@ -13,13 +13,23 @@ public class SolutionTwo
             result.Add(i);
       }
 
-      // return A.Select((host, index) => (host, index)).Where(x => !IsBlocked(x.host, B)).Select(x => x.index).ToArray();
-
       return [.. result];
    }
 
    private static bool IsBlocked(string host, HashSet<string> blockedDomains)
    {
-      return blockedDomains.Any(domain => host.EndsWith(domain));
+      var parts = host.Split('.');
+
+      string current = "";
+      for (int j = parts.Length - 1; j >= 0; j--)
+      {
+         current = j == parts.Length - 1 ? parts[j] : parts[j] + "." + current;
+         if (blockedDomains.Contains(current))
+         {
+            return true;
+         }
+      }
+
+      return false;
    }
 }
